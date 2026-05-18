@@ -1,0 +1,47 @@
+@startuml
+start
+:Crear lista productos vacía;
+while (¿Desea continuar?) is (Sí)
+    :Mostrar menú;
+    if (Opción = 1) then (Agregar)
+        if (¿Hay menos de 10 productos?) then (Sí)
+            :Ingresar código;
+            if (¿Código repetido?) then (Sí)
+                :Mostrar "Código existente";
+            else (No)
+                :Ingresar nombre;
+                :Ingresar stock;
+                :Ingresar precio;
+                if (¿Es perecedero?) then (Sí)
+                    :Ingresar fecha de vencimiento;
+                    :Crear ProductoPerecedero;
+                else (No)
+                    :Crear Producto;
+                endif
+                :Agregar producto a la lista;
+                :Mostrar "Producto agregado";
+            endif
+        else (No)
+            :Mostrar "Máximo de productos alcanzado";
+        endif
+    elseif (Opción = 2) then (Buscar)
+        :Ingresar código;
+        :Buscar producto;
+        if (¿Producto encontrado?) then (Sí)
+            :Mostrar información;
+        else (No)
+            :Mostrar "Producto no encontrado";
+        endif
+    elseif (Opción = 3) then (Listar)
+        :Mostrar todos los productos;
+    elseif (Opción = 4) then (Stock)
+        :Calcular stock total;
+        :Mostrar stock total;
+    elseif (Opción = 5) then (Salir)
+        stop
+    else
+        :Mostrar "Opción inválida";
+    endif
+endwhile
+stop
+@enduml
